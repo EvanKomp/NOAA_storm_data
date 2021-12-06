@@ -19,6 +19,7 @@ def clean_raw_csv(df):
         ]
     ]
     df_.rename(columns={'BEGIN_LAT': 'LATITUDE', 'BEGIN_LON': 'LONGITUDE'}, inplace=True)
+    df_.reset_index(inplace=True)
     return df_
 
 df_ = clean_raw_csv(df)
