@@ -19,8 +19,9 @@ def clean_raw_csv(df):
         ]
     ]
     df_.rename(columns={'BEGIN_LAT': 'LATITUDE', 'BEGIN_LON': 'LONGITUDE'}, inplace=True)
-    df_.dropna(inplace=True)
     df_.reset_index(inplace=True, drop=True)
+    df_.dropna(inplace=True)
+    print(len(df_))
     
     def numerical_price(inp):
         try:
