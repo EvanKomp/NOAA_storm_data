@@ -1,7 +1,7 @@
 import pandas as pd
-import os
-dfs = [pd.read_csv('./data/'+filename) for filename in os.listdir('./data')]
-df = pd.concat(dfs)
+_2018 = pd.read_csv('./data/StormEvents_details-ftp_v1.0_d2018_c20211120.csv')
+_2005 = pd.read_csv('./data/StormEvents_details-ftp_v1.0_d2005_c20210803.csv')
+df = pd.concat([_2005, _2018])
 
 def clean_raw_csv(df):
     df_ = df[
@@ -32,7 +32,7 @@ def clean_raw_csv(df):
             df_[column] = df_[column].astype(str).apply(lambda x: numerical_price(x))
     return df_
 
-df_ = clean_raw_csv(df).sample(50000)
-print(len(df_))
+df_ = clean_raw_csv(df)
+# df_.dropna(inplace=True)
 
 df_.to_csv('cleaned_data.csv')
